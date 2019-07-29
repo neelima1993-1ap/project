@@ -1,0 +1,44 @@
+
+<style>
+    .hide {
+        display: none;
+    }
+    .show {
+        display: inline-block;
+    }
+
+    /* popup window */
+    div.popup {
+        /* popup window is initially hidden */
+        /*display 	: none;*/
+        background: #F1F1F1; /* choose your color; */
+        width		: 500px; /* width */
+        height		: 200px; /* height */
+        position	: fixed;
+        top		    : 25%;
+        left		: 57%;
+        margin-left	: -320px; /* = -width / 2 */
+        margin-top	: -240px; /* = -height / 2 */
+        z-index		: 4; /* z-index of popup backgroung + 1 */
+        border-color: black;
+        border-width: 1px;
+        border-style: solid;
+        -webkit-box-sizing : border-box;
+        -moz-box-sizing	: border-box;
+        -ms-box-sizing	: border-box;
+        box-sizing	: border-box;
+        text-align: center;
+    }
+</style>
+
+
+<div class="container mt-3 popup hide" id="upload_popup">
+    <%= form_tag populate_db_path, multipart: true do %>
+        <p>Choose an excel file:</p>
+        <div class="custom-file mb-3">
+          <%= file_field_tag "upload[excel]", class: 'custom-file-input'%>
+          <label class="custom-file-label" for="customFile">Choose file</label></br></br>
+          <%= submit_tag "UPLOAD", class: "btn btn-success"  %>
+        </div>
+    <% end %>
+</div>

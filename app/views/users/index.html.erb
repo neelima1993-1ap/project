@@ -1,0 +1,39 @@
+<% if flash[:msg] %>
+    <div class="alert alert-success">
+      <strong><%= flash[:msg] %></strong>
+    </div>
+<% end %>
+
+<div class="container mt-5" >
+  <% unless @suppliers.count.zero? %>
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Supplier</th>
+            <th>Active/Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @suppliers.each do |supplier| %>
+            <tr>
+              <td><%= link_to image_tag("show.png", border: 0, width: "40", height: "40"), supplier_detail_path(supplier) %></td>
+              <td><%= supplier.name %></td>
+              <td><%= supplier.active %>/<%= supplier.total %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <h2>No products available</h2>
+  <% end %>
+</div>
+
+<script>
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+</script>

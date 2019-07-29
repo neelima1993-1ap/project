@@ -1,0 +1,8 @@
+<h2><i><u><%= @supplier.name %></u></i></h2>
+
+<h3> Products </h3>
+<div id="products_area">
+	<% @products&.each do |product| %>
+	  <%= render partial: 'products/show', locals: {product: product} %>
+	<% end %>
+</div>
