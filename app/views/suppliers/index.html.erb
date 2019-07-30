@@ -27,13 +27,6 @@
       </table>
     </div>
   <% else %>
-    <h2>No products available</h2>
+    <h2>No data available!</h2>
   <% end %>
 </div>
-
-<script>
-  $(".custom-file-input").on("change", function() {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-  });
-</script>

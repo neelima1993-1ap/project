@@ -5,10 +5,20 @@ class SuppliersController < ApplicationController
   before_action :authenticate_user!
   protect_from_forgery with: :exception
   
+  def index 
+    @suppliers = Supplier.joins(:products).uniq.sort_by{|s| s.active}.reverse
+    @user =  current_user
+  end
 
   def show
     @supplier = Supplier.find(params[:id])
-    @products = @supplier.products.where(active: true)
+    @show_all = params["show_all"] || 'false'
+    @products = @supplier.products
+    @products = @products.where(active: true) if @show_all == 'false'
+   	respond_to do |format|
+   		format.html { }
+		  format.js { }
+    end
   end
 
 end

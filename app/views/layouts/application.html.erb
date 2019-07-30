@@ -8,29 +8,29 @@
 
 	</head>
 	<body>
-	<%= render "layouts/upload_popup" %>
-    
-	<nav class="navbar navbar-expand-sm bg-light">
-	    <ul class="navbar-nav">
-		    <li class="nav-item">
-		      <a class="nav-link" href="#"><%= image_tag "logo.png" , width: 60, height: 60 %><i>Find your supplier!</i></a>
-		    </li>
-		 </ul>
+		<%= render "layouts/upload_popup" %>
+	    
+		<nav class="navbar navbar-expand-sm bg-light">
+		    <ul class="navbar-nav">
+			    <li class="nav-item">
+			      <a class="nav-link" href="/"><%= image_tag "logo.png" , width: 60, height: 60 %><i>Find your supplier!</i></a>
+			    </li>
+			</ul>
 
-        <% unless current_page?('/users/sign_in') || current_page?('/users/sign_up') %> 
-		    <ul class="navbar-nav ml-auto">
-		    	<% if current_user.admin? %>
-				    <li class="nav-item">      
-				       		<%= button_tag "Import",  id: "upload_button" ,style: "float:right ;position:relative; right:50px; ", class: "btn btn-success"  %>    
-				    </li>nbsp;
-			    <% end %>
-			    <li class="nav-item ">      
-			       <%= link_to "Logout", destroy_user_session_path, method: :delete , style: "float:right ;position:relative; right:50px; ", class: "btn btn-danger"  %> 
-			    </li>	    
-		    </ul>
-	    <% end %>
-	</nav>		
-     	<%= yield %>
+	        <% unless current_page?('/users/sign_in') || current_page?('/users/sign_up') || current_page?('/users/password/new') %> 
+			    <ul class="navbar-nav ml-auto">
+			    	<% if current_user.admin? %>
+					    <li class="nav-item">      
+					       	<%= button_tag "Import",  id: "upload_button" ,style: "float:right ;position:relative; right:50px; ", class: "btn btn-success"  %>    
+					    </li>nbsp;
+				    <% end %>
+				    <li class="nav-item ">      
+				        <%= link_to "Logout", destroy_user_session_path, method: :delete , style: "float:right ;position:relative; right:50px; ", class: "btn btn-danger"  %> 
+				    </li>	    
+			    </ul>
+		    <% end %>
+		</nav>		
+	     	<%= yield %>
 	</body>
 </html>
 

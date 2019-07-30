@@ -1,13 +1,13 @@
 module Upload
 
   	def self.upload_data args
-  		Supplier.destroy_all
+  		Supplier.destroy_all #clear existing data
+      Product.destroy_all
       file = args.first
   		workbook = RubyXL::Parser.parse(file)
   		worksheet = workbook[0]
       i = 1
-      #while(true)
-      for i in 1..10
+      while(true)
       	hash = Hash.new()
     		row=worksheet.sheet_data[i]
     		break if row[0].nil? #when excel file ends	
@@ -25,21 +25,18 @@ module Upload
   	end
 
   	def self.make_objects hash_args
-      product = Product.new()
-      product.id = hash_args["product_id"]
-      product.title = hash_args["product_title"]
-      product.category = hash_args["category"]
-      product.price = hash_args["price"]
-      product.active = hash_args["is_active"]
-     
-      unless Supplier.exists?(hash_args["supplier_id"])
-       	supplier = Supplier.new()
+      product = Product.find_or_create_by(id: hash_args["product_id"]) do |product|
+        product.id = hash_args["product_id"]
+        product.title = hash_args["product_title"]
+        product.category = hash_args["category"]
+        product.price = hash_args["price"]
+        product.active = hash_args["is_active"]
+      end     
+      supplier = Supplier.find_or_create_by(id: hash_args["supplier_id"]) do |supplier|
        	supplier.id = hash_args["supplier_id"]
        	supplier.name = hash_args["supplier_name"]
-       	supplier.save!
       end
-      product.supplier = supplier || Supplier.find(hash_args["supplier_id"])
-      product.save!
+      product.suppliers <<  supplier
   	end
 
 end

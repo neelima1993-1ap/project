@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'users#index'
+   root 'suppliers#index'
    post '/upload_data' => 'users#upload_data'
    post 'populate_db', to: 'users#populate_db'
    get 'supplier/:id', to: 'suppliers#show', as: :supplier_detail

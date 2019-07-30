@@ -1,8 +1,17 @@
-<h2><i><u><%= @supplier.name %></u></i></h2>
+<i>
+	<u>
+		<h2><%= @supplier.name %></h2>
+	</u>
+</i>
+<p style="font-family:Courier; color:DarkBlue; font-size: 20px;">It is committed to providing each customer the highest standard of customer service</p></br></br>
 
-<h3> Products </h3>
+
+<h3> Products </h3>&nbsp;
+<%= hidden_field_tag('supplier_id', @supplier.id) %>
+<%= check_box_tag 'show_all'  %> Show Inactive Products too!
+
 <div id="products_area">
-	<% @products&.each do |product| %>
-	  <%= render partial: 'products/show', locals: {product: product} %>
-	<% end %>
+	  <%= render partial: 'products/show', collection: @products, as: :product %>
 </div>
+
+

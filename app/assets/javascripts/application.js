@@ -25,5 +25,18 @@ $(document).ready(function(){
 			$('#upload_popup').removeClass('hide')
 			
 	});
+    
+    $("#show_all").prop("checked", false);
+
+	$("#show_all").bind('change', function(){
+		var id = $('#supplier_id').val();
+	    $.ajax({
+	      url: '/supplier/'+id+'.js',
+	      type: 'GET',
+	      data: {"show_all": $(this).is(":checked") }
+	    });
+
+	});
 
 });
+

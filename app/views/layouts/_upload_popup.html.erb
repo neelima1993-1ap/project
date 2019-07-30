@@ -39,6 +39,21 @@
           <%= file_field_tag "upload[excel]", class: 'custom-file-input'%>
           <label class="custom-file-label" for="customFile">Choose file</label></br></br>
           <%= submit_tag "UPLOAD", class: "btn btn-success"  %>
+          <input type="button"  class="btn btn-danger" onclick="closePopup();" value="Close">
         </div>
     <% end %>
 </div>
+
+<script>
+    function closePopup(){
+        $('#upload_popup').removeClass('show');
+        $('#upload_popup').addClass('hide');
+    }
+
+
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+</script>

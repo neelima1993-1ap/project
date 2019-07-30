@@ -1,5 +1,10 @@
-<div id="product_box">
-	<div class="bottom">
-		<%= product.title %>
-	</div>
+<div id="header">
+  <% unless product.active %>
+  	<%= image_tag("inactive.jpg", border: 0, style: "width:50px; height: 50px; z-index: -1;") %>
+  <% end %>
+  <div style="position: absolute;left: 35%;top: 25%;z-index: -1"><%= image_tag("product.jpeg", border: 0, width: "80", height: "80") %></div>
+  <div id="header-content"> 	
+  	<i><b><%= product.title.encode("windows-1251", invalid: :replace, undef: :replace, replace: " ") %></b></i>
+  </div>
 </div>
+
